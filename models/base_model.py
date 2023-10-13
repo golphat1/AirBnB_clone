@@ -4,9 +4,14 @@ from datetime import datetime
 from uuid import uuid4
 import models
 from models import storage
+import importlib
 
 
 class BaseModel:
+
+    def __init__(self, storage):
+        self.storage = storage
+
     """Defines all common attributes/metods for other classes"""
     def __init__(self, *args, **kwargs):
         """initializes BaseModel
@@ -27,6 +32,10 @@ class BaseModel:
                     self.__dict__[key] = value
         else:
             models.storage.new(self)
+
+    def some_function():
+        from models import storage
+        storage = importlib.import_module('models.storage')
 
     def save(self):
         """updates the public instance
