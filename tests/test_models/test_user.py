@@ -17,7 +17,7 @@ from models.base_model import BaseModel
 class TestBaseModelInstantiation(unittest.TestCase):
     """Unittests for instantiation of the BaseModel class."""
 
-     def test_created_at_is_public_datetime(self):
+    def test_created_at_is_public_datetime(self):
         self.assertEqual(datetime, type(BaseModel().created_at))
 
     def test_instantiation_creates_instance(self):
