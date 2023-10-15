@@ -71,7 +71,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 2:
             print("** instance id missing **")
         else:
-            key = args[0] + "." + args[1]
+            class_name = args[0]
+            instance_id = args[1]
+            key = class_name + "." + instance_id
             all_instances = storage.all()
             if key in all_instances:
                 print(all_instances[key])
@@ -88,7 +90,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 2:
             print("** instance id missing **")
         else:
-            key = args[0] + "." + args[1]
+            class_name = args[0]
+            instance_id = args[1]
+            key = class_name + "." + instance_id
             all_instances = storage.all()
             if key in all_instances:
                 del all_instances[key]
@@ -125,7 +129,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 2:
             print("** instance id missing **")
         else:
-            key = args[0] + "." + args[1]
+            class_name = args[0]
+            instance_id = args[1]
+            key = class_name + "." + instance_id
             all_instances = storage.all()
             if key not in all_instances:
                 print("** no instance found **")
@@ -134,8 +140,10 @@ class HBNBCommand(cmd.Cmd):
             elif len(args) < 4:
                 print("** value missing **")
             else:
+                attribute_name = args[2]
+                attribute_name = args[3]
                 obj = all_instances[key]
-                setattr(obj, args[2], args[3])
+                setattr(obj, attribute_name, attribute_value)
                 obj.save()
 
     def do_count(self, arg):
@@ -170,12 +178,30 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        key = args[0] + "." + args[1]
-        all_instances = storage.all()
+        class_name = args[0]
+        instance_id = args[1]
+        key = class_name + "." + instance_id
+        all_instance = storage.all()
         if key in all_instances:
             print(all_instances[key])
         else:
             print("** no instance found **")
+
+    def default(self, line):
+        # call on input line when command prefix is not recognized
+        parts = line.split(".")
+        if (len(parts) == 2 and
+            parts[0] in self.__classes and
+            parts[1] == "all()"):
+            class_name = parts[0]
+            all_instances = storage.all()
+            instances = []
+            for key, value in all_instances.items():
+                if key.split('.')[0] == class_name:
+                    instances.append(value)
+            print(instances)
+        else:
+            super().default(line)
 
 
 if __name__ == "__main__":
