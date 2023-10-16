@@ -3,7 +3,7 @@
 
 import os
 import sys
-fro models.engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 from models import storage
 import unittest
 from unittest.mock import patch
