@@ -6,7 +6,7 @@ Unittest classes:
     TestReviewSave
     TestReviewToDict
 """
-import unittest 
+import unittest
 import models
 import os
 from datetime import datetime
