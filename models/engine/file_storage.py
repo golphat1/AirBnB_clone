@@ -44,7 +44,7 @@ class FileStorage:
                 for key, value in data.items():
                     class_name, obj_id = key.split('.')
                     obj_dict = value
-                    obj_dict['__class__'] = cls_name
+                    obj_dict['__class__'] = class_name
                     from models.base_model import BaseModel
                     self.new(BaseModel(**obj_dict))
         except FileNotFoundError:
