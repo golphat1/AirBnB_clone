@@ -33,9 +33,15 @@ class BaseModel:
             self.updated_at = self.created_at
 
     def save(self):
-        """updates the public instance attribute
-        updated_at with the current datetime"""
+        """Update updated_at with the current datetime."""
         self.updated_at = datetime.now()
+
+        # Call models.storage.new(self) if needed to add the object to storage
+        try:
+            import models
+            models.storage.new(self)
+        except ImportError:
+            pass
         
     def to_dict(self):
         """ returns a dictionary containing all
