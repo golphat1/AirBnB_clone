@@ -5,8 +5,10 @@ from shlex import split
 from models import storage
 from models.base_model import BaseModel
 
+
 def parse(arg):
     return [i.strip(",") for i in split(arg)]
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
@@ -105,53 +107,51 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, arg):
         argl = parse(arg)
-        count = 0
-        for obj in storage.all().values():
-            if argl[0] == obj.__class__.__name__:
-                count += 1
+        if len(argl) == 0:
+            print("** class name missing **")
+            return
+        if argl[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+            return
+        count = sum(1 for obj in storage.all().values()
+                    if obj.__class__.__name__ == argl[0])
         print(count)
 
     def do_update(self, arg):
         argl = parse(arg)
         objdict = storage.all()
-        if len(argl) == 0:
+        if len(argl) < 4:
             print("** class name missing **")
             return False
-        if argl[0] not in HBNBCommand.__classes:
-            print("** class doesn't exist **")
-            return False
-        if len(argl) == 1:
-            print("** instance id missing **")
-            return False
-        if f"{argl[0]}.{argl[1]}" not in objdict.keys():
-            print("** no instance found **")
-            return False
-        if len(argl) == 2:
-            print("** attribute name missing **")
-            return False
-        if len(argl) == 3:
-            try:
-                type(eval(argl[2])) != dict
-            except NameError:
-                print("** value missing **")
+
+        if len(argl) >= 4:
+            if argl[2] != 'dict':
+                print("** attribute name missing **")
                 return False
-        if len(argl) == 4:
-            obj = objdict[f"{argl[0]}.{argl[1]}"]
-            if argl[2] in obj.__class__.__dict__.keys():
-                valtype = type(obj.__class__.__dict__[argl[2]])
-                obj.__dict__[argl[2]] = valtype(argl[3])
-            else:
-                obj.__dict__[argl[2]] = argl[3]
-        elif type(eval(argl[2])) == dict:
-            obj = objdict[f"{argl[0]}.{argl[1]}"]
-            for k, v in eval(argl[2]).items():
-                if (k in obj.__class__.__dict__.keys() and
-                        type(obj.__class__.__dict__[k]) in {str, int, float}):
-                    valtype = type(obj.__class__.__dict__[k])
-                    obj.__dict__[k] = valtype(v)
+            try:
+                attributes_dict = eval(argl[3])
+                if not isinstance(attributes_dict, dict):
+                    print("** invalid attribute dictionary **")
+                    return False
+            except Exception:
+                print("** invalid attribute dictionary **")
+                return False
+
+            obj_key = f"{argl[0]}.{argl[1]}"
+            if obj_key not in objdict:
+                print("** no instance found **")
+                return False
+
+            obj = objdict[obj_key]
+
+            for key, value in attributes_dict.items():
+                if hasattr(obj, key):
+                    setattr(obj, key, value)
                 else:
-                    obj.__dict__[k] = v
-        storage.save()
+                    print("** attribute name doesn't exist **")
+
+                    storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
