@@ -1,0 +1,28 @@
+/* styles/4-filters.css */
+.filters{
+    background-color: #ffffff;
+    height: 70px;
+    width: 100%;
+    border:solid 1px #DDDDDD;
+    border-radius: 4px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+}
+
+secton.filters button{
+    font-size: 10px;
+    color: #ffffff;
+    background-color: #ff5a5f;
+    height: 48px;
+    border:0px;
+    border-radius: 4px;
+    width: 20%;
+    margin-right: 30px;
+    opacity: 1;
+}
+section.filters button:hover{
+    opacity: 90%;
+
+}
