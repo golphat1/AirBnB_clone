@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 /* styles/2-header.css */
 header {
     background-color: #FF0000;
     height: 70px;
     width: 100%;
+=======
+/*
+ * === Header style ===
+ */
+
+/* Header style */
+header {
+  background-color: #f00;
+  height: 70px;
+  width: 100%;
+>>>>>>> 32e93906f1a83d8d5991ba4b71e83a805af8fa39
 }

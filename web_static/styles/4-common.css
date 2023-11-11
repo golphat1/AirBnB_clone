@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* styles/4-common.css */
 body {
 	margin: 0px;
@@ -12,4 +13,25 @@ body {
     max-width: 1000px;
     margin-top: 30px;
     margin-bottom: 30px;
+=======
+/*
+ * === Global style ===
+ */
+
+/* Body style */
+body {
+  color: #484848;
+  font: 14px Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Container style */
+.container {
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+/* Strong style */
+strong {
+  font-weight: bold;
+>>>>>>> 32e93906f1a83d8d5991ba4b71e83a805af8fa39
 }

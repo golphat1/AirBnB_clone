@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* styles/3-header.css */
 header {
     background-color: white;
@@ -13,4 +14,16 @@ header .logo {
     height: 60px;
     background: url("../images/logo.png") no-repeat center;
     padding-left: 20px;
+=======
+/*
+ * === Header style ===
+ */
+
+/* Header style */
+header {
+  background: #fff url('../images/logo.png') 20px center no-repeat;
+  border-bottom: 1px solid #ccc;
+  height: 70px;
+  width: 100%;
+>>>>>>> 32e93906f1a83d8d5991ba4b71e83a805af8fa39
 }

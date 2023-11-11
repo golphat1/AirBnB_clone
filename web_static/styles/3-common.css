@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* styles/3-common.css */
 body {
 	margin: 0px;
@@ -6,4 +7,14 @@ body {
 	color: #484848;
 	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-size: 14px;
+=======
+/*
+ * === Global style ===
+ */
+
+/* Body style */
+body {
+  color: #484848;
+  font: 14px Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+>>>>>>> 32e93906f1a83d8d5991ba4b71e83a805af8fa39
 }

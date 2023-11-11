@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 /* styles/2-common.css */
 body {
     margin: 0;
     padding: 0;
+=======
+/*
+ * === Global style ===
+ */
+
+/* Body style */
+body {
+  margin: 0;
+  padding: 0;
+>>>>>>> 32e93906f1a83d8d5991ba4b71e83a805af8fa39
 }

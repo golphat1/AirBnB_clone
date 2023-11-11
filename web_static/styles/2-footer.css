@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* styles/2-footer.css */
 footer {
     background-color: #00ff00;
@@ -8,4 +9,20 @@ footer {
     text-align: center;
     line-height: 60px;
     color: #ffffff;
+=======
+/*
+ * == Footer style ==
+ */
+
+/* Footer style */
+footer {
+  align-items: center;
+  background-color: #0f0;
+  bottom: 0;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+>>>>>>> 32e93906f1a83d8d5991ba4b71e83a805af8fa39
 }
